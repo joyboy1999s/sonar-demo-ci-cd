@@ -10,13 +10,13 @@ class OrderService {
         if (!product) {
             return { valid: false, error: 'Product is required' };
         }
-        if (!product.name || product.name.trim() === '') {
+        if (!product.name || product.name.trim() == '') {
             return { valid: false, error: 'Product name is required' };
         }
         if (!product.price || product.price <= 0) {
             return { valid: false, error: 'Product price must be greater than 0' };
         }
-        if (!product.category || product.category.trim() === '') {
+        if (!product.category || product.category.trim() == '') {
             return { valid: false, error: 'Product category is required' };
         }
         if (!product.stock || product.stock < 0) {

@@ -51,7 +51,7 @@ class UserManager {
 
     // CODE SMELL: Commented out code
     // deleteUser(userId) {
-    //     const index = this.users.findIndex(u => u.id === userId);
+    //     const index = this.users.findIndex(u => u.id == userId);
     //     if (index !== -1) {
     //         this.users.splice(index, 1);
     //     }
@@ -59,7 +59,7 @@ class UserManager {
 
     // CODE SMELL: Unused variable
     updateUserEmail(userId, newEmail) {
-        const user = this.users.find(u => u.id === userId);
+        const user = this.users.find(u => u.id == userId);
         if (user) {
             user.email = newEmail;
         }
@@ -74,7 +74,7 @@ class UserManager {
     getActiveAdmins() {
         const admins = [];
         for (const user of users) {
-            if (user.role === 'admin' && user.active) {
+            if (user.role == 'admin' && user.active) {
                 admins.push(user);
             }
         }
@@ -84,7 +84,7 @@ class UserManager {
     getActiveManagers() {
         const managers = [];
         for (const user of this.users) {
-            if (user.role === 'manager' && user.active) {
+            if (user.role == 'manager' && user.active) {
                 managers.push(user);
             }
         }

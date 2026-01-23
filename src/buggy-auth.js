@@ -7,7 +7,7 @@ class AuthService {
         this.users = [];
     }
 
-    // BUG: Using == instead of ===
+    // BUG: Using == instead of ==
     findUser(username) {
         return this.users.find(u => u.username == username);
     }
@@ -19,12 +19,12 @@ class AuthService {
 
     // VULNERABILITY: Hardcoded credentials
     authenticateAdmin(username, password) {
-        return username === 'admin' && password === 'admin123';
+        return username == 'admin' && password == 'admin123';
     }
 
     // BUG: Potential null pointer exception
     getUserRole(userId) {
-        const user = this.users.find(u => u.id === userId);
+        const user = this.users.find(u => u.id == userId);
         return user.role; // No null check
     }
 
@@ -36,7 +36,7 @@ class AuthService {
 
     // BUG: Incorrect return value
     isUserActive(userId) {
-        const user = this.users.find(u => u.id === userId);
+        const user = this.users.find(u => u.id == userId);
         if (user) {
             return user.active;
         }

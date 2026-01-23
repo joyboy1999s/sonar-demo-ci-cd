@@ -10,13 +10,13 @@ class ProductService {
         if (!product) {
             return { valid: false, error: 'Product is required' };
         }
-        if (!product.name || product.name.trim() === '') {
+        if (!product.name || product.name.trim() == '') {
             return { valid: false, error: 'Product name is required' };
         }
         if (!product.price || product.price <= 0) {
             return { valid: false, error: 'Product price must be greater than 0' };
         }
-        if (!product.category || product.category.trim() === '') {
+        if (!product.category || product.category.trim() == '') {
             return { valid: false, error: 'Product category is required' };
         }
         if (!product.stock || product.stock < 0) {
@@ -57,7 +57,7 @@ class ProductService {
     getActiveProducts() {
         const result = [];
         for (let i = 0; i < this.products.length; i++) {
-            if (this.products[i].active === true && this.products[i].stock > 0) {
+            if (this.products[i].active == true && this.products[i].stock > 0) {
                 result.push(this.products[i]);
             }
         }
@@ -68,7 +68,7 @@ class ProductService {
     getInStockProducts() {
         const result = [];
         for (let i = 0; i < this.products.length; i++) {
-            if (this.products[i].active === true && this.products[i].stock > 0) {
+            if (this.products[i].active == true && this.products[i].stock > 0) {
                 result.push(this.products[i]);
             }
         }
