@@ -1,6 +1,6 @@
 // Sample file with BUGS and VULNERABILITIES
 
-const crypto = require('crypto');
+const crypto = require('node:crypto');
 
 class AuthService {
     constructor() {
@@ -19,10 +19,7 @@ class AuthService {
 
     // VULNERABILITY: Hardcoded credentials
     authenticateAdmin(username, password) {
-        if (username === 'admin' && password === 'admin123') {
-            return true;
-        }
-        return false;
+        return username === 'admin' && password === 'admin123';
     }
 
     // BUG: Potential null pointer exception
