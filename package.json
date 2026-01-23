@@ -1,0 +1,21 @@
+{
+  "name": "node-project-sample",
+  "version": "1.0.0",
+  "description": "Sample Node.js project for SonarQube testing",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "sonar": "sonar-scanner",
+    "start": "node src/index.js"
+  },
+  "keywords": [
+    "sonarqube",
+    "testing",
+    "sample"
+  ],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "sonarqube-scanner": "^3.0.1"
+  }
+}
