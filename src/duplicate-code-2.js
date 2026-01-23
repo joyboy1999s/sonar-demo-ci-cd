@@ -41,13 +41,12 @@ class OrderService {
 
     // Duplicate: Same order processing logic
     processOrder(order) {
-        if (!order || !order.items || order.items.length === 0) {
+        if (!order?.items?.length) {
             return { success: false, error: 'Order has no items' };
         }
 
         let totalPrice = 0;
-        for (let i = 0; i < order.items.length; i++) {
-            const item = order.items[i];
+        for (const item of order.items) {
             if (!item.price || !item.quantity) {
                 return { success: false, error: 'Invalid item in order' };
             }
@@ -63,24 +62,7 @@ class OrderService {
 
     // Duplicate: Same order processing logic with minor variation
     calculateOrderTotal(order) {
-        if (!order || !order.items || order.items.length === 0) {
-            return { success: false, error: 'Order has no items' };
-        }
-
-        let totalPrice = 0;
-        for (let i = 0; i < order.items.length; i++) {
-            const item = order.items[i];
-            if (!item.price || !item.quantity) {
-                return { success: false, error: 'Invalid item in order' };
-            }
-            totalPrice += item.price * item.quantity;
-        }
-
-        return {
-            success: true,
-            orderId: order.id,
-            total: totalPrice
-        };
+        return this.processOrder(order);
     }
 }
 
