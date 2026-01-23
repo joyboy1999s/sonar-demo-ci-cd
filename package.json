@@ -4,7 +4,8 @@
   "description": "Sample Node.js project for SonarQube testing",
   "main": "src/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
+    "test:coverage": "jest --coverage",
     "sonar": "sonar-scanner",
     "start": "node src/index.js"
   },
@@ -16,6 +17,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "sonarqube-scanner": "^3.0.1"
+    "jest": "^30.2.0",
+    "sonarqube-scanner": "^3.5.0"
   }
 }

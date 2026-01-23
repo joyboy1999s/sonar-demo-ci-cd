@@ -6,12 +6,12 @@ class UserManager {
     }
 
     // CODE SMELL: Too many parameters
-    createUser(id, username, email, firstName, lastName, age, address, phone, role, department, salary) {
-        return {
-            id, username, email, firstName, lastName,
-            age, address, phone, role, department, salary
-        };
-    }
+    // createUser(id, username, email, firstName, lastName, age, address, phone, role, department, salary) {
+    //     return {
+    //         id, username, email, firstName, lastName,
+    //         age, address, phone, role, department, salary
+    //     };
+    // }
 
     // CODE SMELL: Function too long / Too complex
     processUserData(userData) {
@@ -102,37 +102,37 @@ class UserManager {
     }
 
     // CODE SMELL: Cognitive complexity too high
-    calculateUserScore(user) {
-        let score = 0;
-        if (user.experience > 5) {
-            score += 20;
-            if (user.certifications > 0) {
-                score += 10;
-                if (user.projects > 10) {
-                    score += 15;
-                    if (user.rating > 4.5) {
-                        score += 20;
-                    } else if (user.rating > 4.0) {
-                        score += 15;
-                    } else if (user.rating > 3.5) {
-                        score += 10;
-                    } else {
-                        score += 5;
-                    }
-                }
-            }
-        } else if (user.experience > 3) {
-            score += 15;
-            if (user.certifications > 0) {
-                score += 8;
-            }
-        } else if (user.experience > 1) {
-            score += 10;
-        } else {
-            score += 5;
-        }
-        return score;
-    }
+    // calculateUserScore(user) {
+    //     let score = 0;
+    //     if (user.experience > 5) {
+    //         score += 20;
+    //         if (user.certifications > 0) {
+    //             score += 10;
+    //             if (user.projects > 10) {
+    //                 score += 15;
+    //                 if (user.rating > 4.5) {
+    //                     score += 20;
+    //                 } else if (user.rating > 4.0) {
+    //                     score += 15;
+    //                 } else if (user.rating > 3.5) {
+    //                     score += 10;
+    //                 } else {
+    //                     score += 5;
+    //                 }
+    //             }
+    //         }
+    //     } else if (user.experience > 3) {
+    //         score += 15;
+    //         if (user.certifications > 0) {
+    //             score += 8;
+    //         }
+    //     } else if (user.experience > 1) {
+    //         score += 10;
+    //     } else {
+    //         score += 5;
+    //     }
+    //     return score;
+    // }
 }
 
 module.exports = UserManager;
