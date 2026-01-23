@@ -47,7 +47,7 @@ This project contains the following intentional issues for testing:
 - SQL injection vulnerabilities
 - Use of `eval()` (code injection)
 
-### 💩 Code Smells
+###  Code Smells
 - Functions with too many parameters
 - Deep nesting and high complexity
 - Commented-out code
