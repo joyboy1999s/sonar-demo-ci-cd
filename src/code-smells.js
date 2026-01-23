@@ -15,40 +15,38 @@ class UserManager {
 
     // CODE SMELL: Function too long / Too complex
     processUserData(userData) {
-        let result = null;
-        if (userData) {
-            if (userData.username) {
-                if (userData.email) {
-                    if (userData.age > 18) {
-                        if (userData.role) {
-                            if (userData.department) {
-                                if (userData.salary > 0) {
-                                    result = {
-                                        valid: true,
-                                        user: userData
-                                    };
-                                } else {
-                                    result = { valid: false, error: 'Invalid salary' };
-                                }
-                            } else {
-                                result = { valid: false, error: 'Missing department' };
-                            }
-                        } else {
-                            result = { valid: false, error: 'Missing role' };
-                        }
-                    } else {
-                        result = { valid: false, error: 'User too young' };
-                    }
-                } else {
-                    result = { valid: false, error: 'Missing email' };
-                }
-            } else {
-                result = { valid: false, error: 'Missing username' };
-            }
-        } else {
-            result = { valid: false, error: 'No data provided' };
+        if (!userData) {
+            return { valid: false, error: 'No data provided' };
         }
-        return result;
+
+        if (!userData.username) {
+            return { valid: false, error: 'Missing username' };
+        }
+
+        if (!userData.email) {
+            return { valid: false, error: 'Missing email' };
+        }
+
+        if (userData.age <= 18) {
+            return { valid: false, error: 'User too young' };
+        }
+
+        if (!userData.role) {
+            return { valid: false, error: 'Missing role' };
+        }
+
+        if (!userData.department) {
+            return { valid: false, error: 'Missing department' };
+        }
+
+        if (userData.salary <= 0) {
+            return { valid: false, error: 'Invalid salary' };
+        }
+
+        return {
+            valid: true,
+            user: userData
+        };
     }
 
     // CODE SMELL: Commented out code
@@ -61,7 +59,6 @@ class UserManager {
 
     // CODE SMELL: Unused variable
     updateUserEmail(userId, newEmail) {
-        const timestamp = new Date(); // Unused variable
         const user = this.users.find(u => u.id === userId);
         if (user) {
             user.email = newEmail;
@@ -76,9 +73,9 @@ class UserManager {
     // CODE SMELL: Duplicate code blocks
     getActiveAdmins() {
         const admins = [];
-        for (let i = 0; i < this.users.length; i++) {
-            if (this.users[i].role === 'admin' && this.users[i].active) {
-                admins.push(this.users[i]);
+        for (const user of users) {
+            if (user.role === 'admin' && user.active) {
+                admins.push(user);
             }
         }
         return admins;
@@ -86,9 +83,9 @@ class UserManager {
 
     getActiveManagers() {
         const managers = [];
-        for (let i = 0; i < this.users.length; i++) {
-            if (this.users[i].role === 'manager' && this.users[i].active) {
-                managers.push(this.users[i]);
+        for (const user of this.users) {
+            if (user.role === 'manager' && user.active) {
+                managers.push(user);
             }
         }
         return managers;
@@ -99,7 +96,8 @@ class UserManager {
         try {
             return JSON.parse(jsonString);
         } catch (e) {
-            // Empty catch block
+            console.error('Error parsing JSON:', e);
+            return null;
         }
     }
 
