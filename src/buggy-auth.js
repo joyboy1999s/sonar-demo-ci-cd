@@ -56,7 +56,6 @@ class AuthService {
             }
         }
     }
-
     // VULNERABILITY: Path Traversal
     readFile(filename) {
         const fs = require('fs');
