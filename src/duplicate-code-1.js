@@ -1,11 +1,11 @@
-// Sample file with DUPLICATE CODE (Part 1)
+// Sample file with DUPLICATE CODE (Part 1) - IDENTICAL to Part 2
 
 class ProductService {
     constructor() {
         this.products = [];
     }
 
-    // Duplicate: Same logic as in duplicate-code-2.js
+    // Duplicate: Same validation logic as in duplicate-code-2.js
     validateProduct(product) {
         if (!product) {
             return { valid: false, error: 'Product is required' };
@@ -25,54 +25,44 @@ class ProductService {
         return { valid: true };
     }
 
-    // Duplicate: Same logic repeated within the same file
-    calculateDiscount(price, discountPercent) {
-        if (discountPercent < 0 || discountPercent > 100) {
-            throw new Error('Invalid discount percentage');
+    // Duplicate: Similar calculation pattern
+    calculateTax(amount, taxPercent) {
+        if (taxPercent < 0 || taxPercent > 100) {
+            throw new Error('Invalid tax percentage');
         }
-        const discountAmount = (price * discountPercent) / 100;
-        const finalPrice = price - discountAmount;
+        const taxAmount = (amount * taxPercent) / 100;
+        const totalAmount = amount + taxAmount;
         return {
-            originalPrice: price,
-            discount: discountAmount,
-            finalPrice: finalPrice
+            baseAmount: amount,
+            tax: taxAmount,
+            totalAmount: totalAmount
         };
     }
 
-    // Duplicate: Same calculation logic
-    calculateBulkDiscount(price, discountPercent) {
-        if (discountPercent < 0 || discountPercent > 100) {
-            throw new Error('Invalid discount percentage');
+    // Duplicate: Same order processing logic
+    processOrder(order) {
+        if (!order?.items?.length) {
+            return { success: false, error: 'Order has no items' };
         }
-        const discountAmount = (price * discountPercent) / 100;
-        const finalPrice = price - discountAmount;
+
+        let totalPrice = 0;
+        for (const item of order.items) {
+            if (!item.price || !item.quantity) {
+                return { success: false, error: 'Invalid item in order' };
+            }
+            totalPrice += item.price * item.quantity;
+        }
+
         return {
-            originalPrice: price,
-            discount: discountAmount,
-            finalPrice: finalPrice
+            success: true,
+            orderId: order.id,
+            total: totalPrice
         };
     }
 
-    // Duplicate: Same filtering logic
-    getActiveProducts() {
-        const result = [];
-        for (let i = 0; i < this.products.length; i++) {
-            if (this.products[i].active == true && this.products[i].stock > 0) {
-                result.push(this.products[i]);
-            }
-        }
-        return result;
-    }
-
-    // Duplicate: Same filtering logic with different condition
-    getInStockProducts() {
-        const result = [];
-        for (let i = 0; i < this.products.length; i++) {
-            if (this.products[i].active == true && this.products[i].stock > 0) {
-                result.push(this.products[i]);
-            }
-        }
-        return result;
+    // Duplicate: Same order processing logic with minor variation
+    calculateOrderTotal(order) {
+        return this.processOrder(order);
     }
 }
 

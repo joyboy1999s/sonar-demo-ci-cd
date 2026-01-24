@@ -56,6 +56,27 @@ class AuthService {
             }
         }
     }
+    // VULNERABILITY: Path Traversal
+    readFile(filename) {
+        const fs = require('fs');
+        // No validation on filename allows "../" to access system files
+        return fs.readFileSync('userdata/' + filename);
+    }
+
+    // VULNERABILITY: Insecure Randomness
+    generateToken() {
+        // Math.random() is not cryptographically secure
+        return Math.random().toString(36).substring(2);
+    }
+
+    // BUG: Infinite Recursion
+    recursiveLookup(id) {
+        // Missing base case or incorrect recursive call
+        return this.recursiveLookup(id);
+    }
+
+    // CODE SMELL: Unused private field (simulated with underscore convention)
+    _internalCache = {};
 }
 
 module.exports = AuthService;
