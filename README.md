@@ -2,7 +2,7 @@
 
 This project contains intentional code quality issues for SonarQube testing purposes.
 
-## Setup
+## Setup ...
 
 1. **Install dependencies:**
    ```bash
