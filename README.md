@@ -4,7 +4,7 @@ This project contains intentional code quality issues for SonarQube testing purp
 
 ## Setup ...
 
-1. **Install dependencies:**
+1. **Install dependencies:**.
    ```bash
    npm install
    ```
